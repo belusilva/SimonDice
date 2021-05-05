@@ -73,6 +73,10 @@ body {
     left: calc(50% - 200px);
   }
 
+  *{
+    font-family: 'Tahoma';
+  }
+
   .hide {
     display: none;
   }

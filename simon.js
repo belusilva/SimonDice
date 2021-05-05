@@ -3,7 +3,7 @@ const celeste = document.getElementById('celeste')
       const naranja = document.getElementById('naranja')
       const verde = document.getElementById('verde')
       const btnEmpezar = document.getElementById('btnEmpezar')
-      const ULTIMO_NIVEL = 10
+      const ULTIMO_NIVEL = 1
 
       class Juego {
         constructor() {
@@ -102,14 +102,30 @@ const celeste = document.getElementById('celeste')
               this.nivel++
               this.eliminarEventosClick()
               if(this.nivel === (ULTIMO_NIVEL + 1)){
-                  //ganó
+                  this.ganoElJuego()
               } else {
+                setTimeout(this.siguienteNivel, 1000)
                 setTimeout(this.siguienteNivel, 1500)
               }
             }
           } else {
-            //perdió
+            setTimeout(this.perdioElJuego, 500)
+            this.perdioElJuego()
           }
+        }
+        ganoElJuego(){
+          swal('Ganaste')
+          .then(() => this.inicializar())
+          swal('Ganaste!', 'Felicitaciones', 'success')
+          .then(this.inicializar)
+        }
+        perdioElJuego(){
+          swal('UPS!')
+          swal('Perdiste', 'Vuelve a intentarlo!', 'error')
+          .then(() => {
+            this.eliminarEventosClick()
+            this.inicializar()
+          })
         }
       }
     
